@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BARNES Moscow — рассылка</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <section class="newsletter-cta" aria-labelledby="newsletter-title">
+        <div class="newsletter-cta__inner">
+          <div class="newsletter-cta__grid">
+            <div class="newsletter-cta__copy">
+              <h1 id="newsletter-title">Оставайтесь впереди рынка</h1>
+              <p class="newsletter-cta__lead">Новые проекты, редкие объекты и экспертные материалы BARNES — всё, что помогает лучше ориентироваться в мире элитной недвижимости.</p>
+
+              <form class="newsletter-form" action="#" method="post">
+                <label class="newsletter-form__label" for="newsletter-email">Ваш email</label>
+                <div class="newsletter-form__row">
+                  <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="Ваш email" required aria-describedby="newsletter-note newsletter-status" />
+                  <button type="submit">Подписаться <span aria-hidden="true">↗</span></button>
+                </div>
+                <p class="newsletter-form__note" id="newsletter-note">Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
+                <p class="newsletter-form__status" id="newsletter-status" aria-live="polite" role="status"></p>
+              </form>
+            </div>
+
+            <div class="newsletter-cta__visual">
+              <picture>
+                <source media="(max-width: 540px)" srcset="assets/subscribe-block-img-mob.jpg" />
+                <img src="assets/subscribe-block-img.jpg" alt="Обложки журнала BARNES" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const newsletterForm = document.querySelector('.newsletter-form');
+      const newsletterEmail = document.querySelector('#newsletter-email');
+      const newsletterStatus = document.querySelector('#newsletter-status');
+
+      newsletterForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!newsletterEmail.checkValidity()) {
+          newsletterEmail.reportValidity();
+          return;
+        }
+
+        newsletterStatus.textContent = 'Спасибо. Будем присылать только главное.';
+        newsletterForm.classList.add('is-submitted');
+      });
+
+      newsletterEmail.addEventListener('input', () => {
+        newsletterStatus.textContent = '';
+        newsletterForm.classList.remove('is-submitted');
+      });
+    </script>
+  </body>
+</html>
